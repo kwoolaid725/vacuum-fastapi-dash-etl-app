@@ -5,15 +5,24 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import psycopg2
-
-
 import dash_mantine_components as dmc
 import dash_bootstrap_components as dbc
-from dash_iconify import DashIconify
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# from dash_iconify import DashIconify
 
 
 # Postgres connection
-conn = psycopg2.connect(database='vacuums', user='postgres', password='password', host='localhost', port='5432')
+conn = psycopg2.connect(database=os.getenv("DATABASE_NAME"),
+                        user=os.getenv("DATABASE_USERNAME"),
+                        password=os.getenv("DATABASE_PASSWORD"),
+                        host=os.getenv("DATABASE_HOSTNAME"),
+                        port=os.getenv("DATABASE_PORT")
+                        )
 cur = conn.cursor()
 cur.execute("SELECT "
             "c.*, "
@@ -293,7 +302,7 @@ def create_bare_scatter(df):
     fig.update_layout(
 
         xaxis=dict(title_text="<b>Pickup % </b>"),
-        yaxis=dict(autorange="reversed", title_text="<b>Model Names<b>"),
+        yaxis=dict(autorange="reversed", title_text="<b>Model Names / Brush Type<b>"),
         template="plotly_white",
         title={'text': "<b> Pickup % Scatter Plot for All Soil Types</b>" + '<br>' + '-' * 45,
                 'font': {
@@ -793,5 +802,5 @@ def update_graph(checklist, checklist2, checklist3, multiselect, tab):
 
 #\
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
 
