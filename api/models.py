@@ -14,12 +14,7 @@ test_vacuums = Table('test_vacuums', Base.metadata,
 
  )
 
-test_target_group = Table('test_target_group', Base.metadata,
-        Column('id', Integer, primary_key=True, nullable=False, index=True),
-        Column('test_category_id', ForeignKey('test_category.id')),
-        Column('vac_type_id', ForeignKey('vac_type.id')),
-        Column('test_target_id', ForeignKey('test_target.id')),
-        Column('test_group_id', ForeignKey('test_group.id')))
+
 
 
 class Vacuum(Base):
@@ -73,8 +68,8 @@ class CRcordless(Base):
     test_parent_id = Column(Integer, ForeignKey("tests.id", ondelete="CASCADE"), nullable=False)
     test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"), server_default='1', nullable=False)
     vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"), server_default='1', nullable=False)
-    test_target = Column(String, nullable=False)
-    test_group = Column(String, nullable=False)
+    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"), nullable=False)
+    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"),  nullable=False)
     test_case = Column(String)
     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
     # vacuum = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
@@ -102,8 +97,8 @@ class CRrobot(Base):
     test_parent_id = Column(Integer, ForeignKey("tests.id", ondelete="CASCADE"), nullable=False)
     test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"), server_default='2', nullable=False)
     vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"), server_default='2', nullable=False)
-    test_target = Column(String, nullable=False)
-    test_group = Column(String, nullable=False)
+    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"), nullable=False)
+    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"),  nullable=False)
     test_case = Column(String)
     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
     # vacuum = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
@@ -155,14 +150,14 @@ class TestGroup(Base):
     name = Column(String, nullable=False)
     last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
 
-class TestTargetGroup(Base):
-    __tablename__ = 'test_target_group'
-    id = Column(Integer, primary_key=True, nullable=False, index=True)
-    test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"))
-    vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"))
-    test_target = Column(String, nullable=False)
-    test_group = Column(String, nullable=False)
-    last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+# class TestTargetGroup(Base):
+#     __tablename__ = 'test_target_group'
+#     id = Column(Integer, primary_key=True, nullable=False, index=True)
+#     test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"))
+#     vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"))
+#     test_target = Column(String, nullable=False)
+#     test_group = Column(String, nullable=False)
+#     last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
 
 class CRcordlessTestMeasure(Base):
     __tablename__ = 'cr_cordless_test_measure'
