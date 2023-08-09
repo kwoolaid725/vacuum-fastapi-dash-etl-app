@@ -162,7 +162,8 @@ class TestGroup(Base):
 class CRcordlessTestMeasure(Base):
     __tablename__ = 'cr_cordless_test_measure'
     id = Column(Integer, primary_key=True, nullable=False, index=True)
-    test_target_group_id = Column(Integer, ForeignKey("test_target_group.id", ondelete="CASCADE"))
+    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"))
+    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"))
     test_measure = Column(String, nullable=False)
     test_measure_desc = Column(String)
     unit = Column(String)
@@ -171,7 +172,8 @@ class CRcordlessTestMeasure(Base):
 class CRrobotTestMeasure(Base):
     __tablename__ = 'cr_robot_test_measure'
     id = Column(Integer, primary_key=True, nullable=False, index=True)
-    test_target_group_id = Column(Integer, ForeignKey("test_target_group.id", ondelete="CASCADE"))
+    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"))
+    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"))
     test_measure = Column(String, nullable=False)
     test_measure_desc = Column(String)
     unit = Column(String)
