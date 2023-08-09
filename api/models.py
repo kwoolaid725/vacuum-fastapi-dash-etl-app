@@ -66,10 +66,7 @@ class CRcordless(Base):
 
     id = Column(Integer, primary_key=True, nullable=False, index=True)
     test_parent_id = Column(Integer, ForeignKey("tests.id", ondelete="CASCADE"), nullable=False)
-    test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"), server_default='1', nullable=False)
-    vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"), server_default='1', nullable=False)
-    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"), nullable=False)
-    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"),  nullable=False)
+    cr_cordless_test_measure_id = Column(Integer, ForeignKey("cr_cordless_test_measure.id", ondelete="CASCADE"), nullable=False)
     test_case = Column(String)
     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
     # vacuum = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
@@ -95,10 +92,7 @@ class CRrobot(Base):
 
     id = Column(Integer, primary_key=True, nullable=False, index=True)
     test_parent_id = Column(Integer, ForeignKey("tests.id", ondelete="CASCADE"), nullable=False)
-    test_category_id = Column(Integer, ForeignKey("test_category.id", ondelete="CASCADE"), server_default='2', nullable=False)
-    vac_type_id = Column(Integer, ForeignKey("vac_type.id", ondelete="CASCADE"), server_default='2', nullable=False)
-    test_target_id = Column(Integer, ForeignKey("test_target.id", ondelete="CASCADE"), nullable=False)
-    test_group_id = Column(Integer, ForeignKey("test_group.id", ondelete="CASCADE"),  nullable=False)
+    cr_robot_test_measure_id = Column(Integer, ForeignKey("cr_robot_test_measure.id", ondelete="CASCADE"), nullable=False)
     test_case = Column(String)
     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
     # vacuum = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
