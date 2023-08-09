@@ -108,7 +108,7 @@ class CRrobot(Base):
     _value = Column(String, nullable=False)
     units = Column(String)
     run = Column(Integer, nullable=False)
-    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    run_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     notes = Column(String)
     image = Column(String)
 
