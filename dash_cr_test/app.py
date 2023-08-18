@@ -802,5 +802,5 @@ def update_graph(checklist, checklist2, checklist3, multiselect, tab):
 
 #\
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
