@@ -1,0 +1,148 @@
+'''
+# test_details schema
+
+id	                        int (PK)
+test_parent_id	            int (FK to tests.id)
+test_category_id	        int (FK to test_categories.id)
+vac_type_id	                int (FK to vac_types.id)
+test_target_id	            int (FK to test_targets.id)
+test_group_id               int (FK to test_groups.id)
+test_measure_id	            int (FK to test_measures.id)
+test_case                   str
+tester                      int (FK to users.id)
+inv_no                      int (FK to vacuums.id)
+brush_type                  str
+test_measure                str
+value                       str
+units                       str
+run                         int
+run_date                    timestamp
+notes                       str
+image                       str
+owner_id                    int (FK to users.id)
+
+'''
+
+'''
+for CRDI data:
+
+test_category_id = 4
+vac_type_id: {'Stick Vacuums (Cordless)': 1, 'Stick Vacuums (Corded)': 3}
+test_target_id: rating_category_cro
+
+{
+     1 - Bare Floors
+     2 - Carpet
+     3 - Edges
+     4 - Pet hair
+     5 - Noise
+     6 - Convenience
+     7 - Specs
+     8 - Clean Emissions
+     9 - Overall Score,
+
+}
+
+test_group_id:
+
+{
+    1 - Sand
+    2 - Rice
+    3 - Cheerios
+    4 - Pet Hair
+    5 - Noise (B&K Soundmeter)
+    6 - Mix	
+    7 - Clearance
+    8 - Battery
+    9 - Use-Force
+    10 - Dustbin Capacity
+    11 - Features
+    12 - Usability
+    
+    
+    16 - Spec
+    17 - Bag
+    18 - Vacuum Body
+    20 - Score
+    20 - Pull Ease
+    21 - Push Ease
+
+}
+
+test_measure_id:
+{
+    0 - Soil Weight
+    1 - Weight - Before
+    2 - Weight - After
+    3 -	Weight - Diff.
+    4 - Pickup
+    5 - Rug Weight - Before
+    6 - Rug Weight - After
+    7 -	Rug Weight - Diff.
+    8 -	Relative Humidity
+    9 - Room  Temperature
+    10 - Edges Front 1
+    11 - Edges Front 2
+    12 - Edges Front 3
+    13 - Edges Front 4
+    14 - Edges Front 5
+    15 - Edges Front 6
+    16 - Edges Front Avg.
+    17 - Edges Left 1
+    18 - Edges Left 2
+    19 - Edges Left 3
+    20 - Edges Left Avg.
+    21 - Edges Right 1
+    22 - Edges Right 2
+    23 - Edges Right 3
+    24 - Edges Right Avg.
+    25 - Edges Pickup Left
+    26 - Edges Pickup Right
+    27 - Removal Strokes
+    28 - Clearance
+    29 - Clearance 3
+    30 - Clearance 4
+    31 - Clearance 5
+    32 - Clearance 6
+    33 - Clearance 7
+    34 - Clearance 8
+    35 - Clearance Avg.
+    36 - Score
+    37 - Capacity
+    38 - Ease
+    39 - Empty Weight
+    40 - Full Weight
+    41 - Features
+    42 - Power
+    43 - Charge
+    44 - Runtime
+    45 - Minutes
+    46 - Power Level
+    47 - Power Supply
+    48 - Power Brush Off
+    49 - Seconds
+    50 - Pull - Avg. Lb
+    51 - Push - Avg. Lb
+    52 - Pull - Avg. Vac
+    53 - Push - Avg. Vac
+    54 - Pull - Avg. Vac Not Attached
+    55 - Push - Avg. Vac Not Attached
+    56 - Corldess
+    57 - Mop
+    58 - Weight
+    59 - Cord Length
+    60 - Self-Stand
+    61 - Battery Status Indicator - Percentage
+    62 - Brush On/Off
+    63 - Auto-Suction Mode
+    64 - Power Mode Indicator
+    65 - Headlight
+    66 - Easy-to-Maneuver
+    67 - Head Swivels
+    68 - Anti Hair-tangle
+    69 - Dust Sensor
+
+}
+
+
+'''
