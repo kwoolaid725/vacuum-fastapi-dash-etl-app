@@ -69,6 +69,7 @@ class TestDetail(Base):
     vac_type_id = Column(Integer, ForeignKey("vac_types.id", ondelete="CASCADE"), nullable=False)
     test_target_id = Column(Integer, ForeignKey("test_targets.id", ondelete="CASCADE"), nullable=False)
     test_group_id = Column(Integer, ForeignKey("test_groups.id", ondelete="CASCADE"), nullable=False)
+    test_group = Column(String, nullable=False)
     test_measure_id = Column(Integer, ForeignKey("test_measures.id", ondelete="CASCADE"), nullable=False)
     test_case = Column(String)
     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
@@ -86,31 +87,27 @@ class TestDetail(Base):
     vacuum_details = relationship("Vacuum")
     test_details = relationship("Test")
 
+class CRDI(Base):
+    __tablename__ = 'crdi'
 
-# class CRrobot(Base):
-#     __tablename__ = 'cr_robot'
-#
-#     id = Column(Integer, primary_key=True, nullable=False, index=True)
-#     test_parent_id = Column(Integer, ForeignKey("tests.id", ondelete="CASCADE"), nullable=False)
-#
-#     cr_robot_test_measure_id = Column(Integer, ForeignKey("cr_robot_test_measure.id", ondelete="CASCADE"), nullable=False)
-#     test_case = Column(String)
-#     tester = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='9999', nullable=False)
-#     # vacuum = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
-#     inv_no = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
-#     power_setting = Column(String)
-#     test_measure = Column(String, nullable=False)
-#     value = Column(String, nullable=False)
-#     units = Column(String)
-#     run = Column(Integer, nullable=False)
-#     run_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
-#     notes = Column(String)
-#     image = Column(String)
-#
-#     owner_id = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='0', nullable=False)
-#     vacuum_details = relationship("Vacuum")
-#     test_details = relationship("Test")
-    # vacuums = relationship("Vacuum", secondary="crcordless_vacuums", back_populates="CRrobot")
+    id = Column(Integer, primary_key=True, nullable=False, index=True)
+    ver_date = Column(DateTime(), nullable=False)
+    test_category_id = Column(Integer, ForeignKey("test_categories.id", ondelete="CASCADE"), nullable=False)
+    vac_type_id = Column(Integer, ForeignKey("vac_types.id", ondelete="CASCADE"), nullable=False)
+    brand = Column(String, nullable=False)
+    model_name = Column(String, nullable=False)
+    test_target_id = Column(Integer, ForeignKey("test_targets.id", ondelete="CASCADE"), nullable=False)
+    test_group_id = Column(Integer, ForeignKey("test_groups.id", ondelete="CASCADE"), nullable=False)
+    test_measure_id = Column(Integer, ForeignKey("test_measures.id", ondelete="CASCADE"), nullable=False)
+    test_measure = Column(String, nullable=False)
+    value = Column(String, nullable=False)
+    units = Column(String)
+    run = Column(Integer, nullable=False)
+    parent_brand = Column(String)
+    parent_model = Column(String)
+    last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
+    owner_id = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='0', nullable=False)
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -161,19 +158,4 @@ class TestMeasure(Base):
     description = Column(String)
     last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
 
-class CRDI(Base):
-    __tablename__ = 'crdi'
-    id = Column(Integer, primary_key=True, nullable=False, index=True)
-    test_measure_id = Column(Integer, ForeignKey("test_measures.id", ondelete="CASCADE"))
-    inv_no = Column(Integer, ForeignKey("vacuums.inv_no", ondelete="CASCADE"), nullable=False)
-    brand = Column(String)
-    model_name = Column(String)
-    test_measure = Column(String, nullable=False)
-    value = Column(String, nullable=False)
-    units = Column(String)
-    run = Column(Integer, nullable=False)
-    parent_brand = Column(String)
-    parent_model = Column(String)
-    run_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
-    last_modified = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
-    owner_id = Column(Integer, ForeignKey("users.id", ondelete="SET DEFAULT"), server_default='0', nullable=False)
+
