@@ -25,22 +25,23 @@ conn = psycopg2.connect(database=os.getenv("DATABASE_NAME"),
                         )
 cur = conn.cursor()
 cur.execute("SELECT "
-            "c.*, "
+            "t.*, "
             "v.brand, v.model_name, v.dual_nozzle, v.fluffy_nozzle,"
-            "u.full_name as tester"
-            " FROM cr_cordless as c "
-            " left join vacuums as v on c.inv_no = v.inv_no"
-            " left join users as u on c.tester = u.id")
+            "u.full_name as tester,"
+            "tg.name as test_group_name,"
+            "ts.description as test_description"
+            " FROM test_details as t "
+            " left join vacuums as v on t.inv_no = v.inv_no"
+            " left join users as u on t.tester = u.id"
+            " left join test_groups as tg on t.test_group_id = tg.id"
+            " left join tests as ts on t.test_parent_id = ts.id")
 
 rows = cur.fetchall()
 
 # Create dataframe
-cordless_df = pd.DataFrame(rows, columns=['ROW_ID', 'TEST_ID', 'TEST_TARGET', 'TEST_GROUP', 'TEST_CASE', 'TESTER_ID',
-                                          'INV_NO', 'BRUSH_TYPE', 'POWER_SETTING', 'TEST_MEASURE', 'VALUE', 'UNITS',
-                                          'RUN',
-                                          'RUN_DATE', 'NOTES', 'IMAGE', 'OWNER_ID', 'BRAND', 'MODEL_NAME',
-                                          'DUAL_NOZZLE',
-                                          'FLUFFY_NOZZLE', 'TESTER_NAME'])
+cordless_df = pd.DataFrame(rows, columns=['ROW_ID', 'TEST_ID', 'TEST_CATEGORY_ID', 'VAC_TYPE_ID', 'TEST_TARGET_ID', 'TEST_GROUP_ID', 'TEST_MEASURE_ID',
+                                          'TEST_CASE', 'TESTER_ID','INV_NO', 'BRUSH_TYPE', 'TEST_MEASURE', 'VALUE', 'UNITS', 'RUN', 'RUN_DATE', 'NOTES',
+                                          'IMAGE', 'OWNER_ID','BRAND', 'MODEL_NAME', 'DUAL_NOZZLE', 'FLUFFY_NOZZLE', 'TESTER_NAME', 'TEST_GROUP', 'TEST_DESCRIPTION'])
 
 # cordless_df = cordless_df.dropna(axis='columns', how='all')
 # drop image column
@@ -54,40 +55,42 @@ cordless_df['RUN_DATE'] = cordless_df['RUN_DATE'].dt.strftime('%Y/%m/%d')
 
 
 # bare floor
-bare_df = cordless_df[cordless_df['TEST_TARGET'] == 'BARE']
-bare_df = bare_df[bare_df['TEST_MEASURE'] == 'pickup']
+bare_df = cordless_df[cordless_df['TEST_TARGET_ID'] == 1]
+bare_df = bare_df[bare_df['TEST_MEASURE_ID'] == 4]
 
 # carpet
-carpet_df = cordless_df[cordless_df['TEST_TARGET'] == 'CARPET']
-carpet_df = carpet_df[carpet_df['TEST_MEASURE'].isin(['pickup', 'r_temp', 'r_humidity'])]
+carpet_df = cordless_df[cordless_df['TEST_TARGET_ID'] == 2]
+# carpet_df = carpet_df[carpet_df['TEST_MEASURE'].isin(['pickup', 'r_temp', 'r_humidity'])]
+carpet_df = carpet_df[carpet_df['TEST_MEASURE_ID'].isin([4, 9, 8])]
 
 
 # edge
-edge_df = cordless_df[cordless_df['TEST_TARGET'] == 'EDGE']
-edge_df = edge_df[edge_df['TEST_MEASURE'].isin(['e_favg', 'e_lavg', 'e_ravg', 'e_pickupL', 'e_pickupR'])]
+edge_df = cordless_df[cordless_df['TEST_TARGET_ID'] == 3]
+# edge_df = edge_df[edge_df['TEST_MEASURE'].isin(['e_favg', 'e_lavg', 'e_ravg', 'e_pickupL', 'e_pickupR'])]
+edge_df = edge_df[edge_df['TEST_MEASURE_ID'].isin([16, 20, 24, 25, 26])]
 
 # transform dataframes to pivot tables
 pivot_bare_df = bare_df.pivot_table(
-    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP', 'RUN'],
+    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP_ID', 'RUN', 'TEST_GROUP'],
     columns='TEST_MEASURE', values='VALUE', aggfunc='first')
 pivot_bare_df.reset_index(inplace=True)
 
 pivot_carpet_df = carpet_df.pivot_table(
-    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP', 'RUN'],
+    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP_ID', 'RUN', 'TEST_GROUP'],
     columns='TEST_MEASURE', values='VALUE', aggfunc='first')
 pivot_carpet_df.reset_index(inplace=True)
 
 pivot_edge_df = edge_df.pivot_table(
-    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP', 'RUN'],
+    index=['TEST_ID', 'RUN_DATE', 'TESTER_NAME', 'BRAND', 'MODEL_NAME', 'INV_NO', 'BRUSH_TYPE', 'TEST_GROUP_ID', 'RUN', 'TEST_GROUP'],
     columns='TEST_MEASURE', values='VALUE', aggfunc='first')
 pivot_edge_df.reset_index(inplace=True)
 
 
-def create_panel(idx, test_id):
+def create_panel(idx, test_id, test_description):
     return dmc.AccordionPanel(
         [
             dbc.Checklist(
-                options=[{"label": test_id, "value": test_id}],
+                options=[{"label": f"{test_id} - {test_description}", "value": test_id}],
                 value=[],
                 style={'fontSize': 20},
                 id={'type': 'checklist-input', 'index': idx},
@@ -106,7 +109,7 @@ def create_boxplot(df, title):
 
     for r, c in zip(df_ordered.BRAND.unique(), px.colors.qualitative.G10):
         plot_df = df_ordered[df_ordered.BRAND == r]
-        fig.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.pickup, name=r, marker_color=c))
+        fig.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.Pickup, name=r, marker_color=c))
         fig.layout.title = title
         fig.update_traces(
         orientation='h',
@@ -173,12 +176,14 @@ def create_table(df):
 
 def create_edge_plots(df):
     list=[]
+    # replace spaces with underscore
+    df.columns = df.columns.str.replace(' ', '_')
     # append df['e_pickupL'] and df['e_pickupR'] to df['e_pickupAvg']
-    df['e_pickupAvg'] = df[['e_pickupL', 'e_pickupR']].mean(axis=1).round(2)
+    df['Average_Pickup'] = df[['Edges_Pickup_Left', 'Edges_Pickup_Right']].mean(axis=1).round(2)
     # max e_lavg, e_ravg, e_favg
-    df['e_max'] = df[['e_lavg', 'e_ravg', 'e_favg']].max(axis=1)
+    df['Max_Distance'] = df[['Edges_Left_Avg.', 'Edges_Right_Avg.', 'Edges_Front_Avg.']].max(axis=1)
     #group by brand and model name and nozzle type and get max of e_max
-    df['e_max'] = df.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['e_max'].transform('max')
+    df['Max_Distance'] = df.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['Max_Distance'].transform('max')
 
 
 
@@ -194,16 +199,16 @@ def create_edge_plots(df):
     for r, c in zip(df_ordered.BRAND.unique(), px.colors.qualitative.G10):
         plot_df = df_ordered[df_ordered.BRAND == r]
 
-        fig1.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.e_pickupAvg, name=r, marker_color=c))
+        fig1.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.Average_Pickup, name=r, marker_color=c))
         fig1.update_layout(title='<b>Average of Left and Right Side Pickup %</b>' + '<br>' + '-' * 50)
 
-        fig2.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.e_pickupL, name=r, marker_color=c))
+        fig2.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.Edges_Pickup_Left, name=r, marker_color=c))
         fig2.update_layout(title='<b>Left Side of T Jig - Pickup %</b>' + '<br>' + '-' * 50)
 
-        fig3.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.e_pickupR, name=r, marker_color=c))
+        fig3.add_trace(go.Box(y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], x=plot_df.Edges_Pickup_Right, name=r, marker_color=c))
         fig3.update_layout(title='<b>Right of T Jig - Pickup %</b>' + '<br>' + '-' * 50 )
 
-        fig4.add_trace(go.Scatter(x=plot_df.e_max, y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], mode='markers', name=r, marker_color=c))
+        fig4.add_trace(go.Scatter(x=plot_df.Max_Distance, y=[plot_df.MODEL_NAME, plot_df.BRUSH_TYPE], mode='markers', name=r, marker_color=c))
 
 
     for fig in fig1, fig2, fig3:
@@ -294,9 +299,9 @@ def create_bare_scatter(df):
 
     df['MM'] = df['MODEL_NAME'].map(str) + " / " + df['BRUSH_TYPE'].map(str)
     fig = px.scatter(df,
-                      x='pickup',
+                      x='Pickup',
                       y='MM', color='BRAND', hover_data=['BRAND', 'TEST_GROUP'],
-                      symbol=df['TEST_GROUP'], symbol_sequence=['circle-open', 'diamond-tall-open', 'x'],
+                      symbol=df['TEST_GROUP'], symbol_sequence=[ 'x','diamond-tall-open', 'circle-open'],
                       width=1080, height=800,
                       )
     fig.update_layout(
@@ -348,7 +353,12 @@ app.layout = dmc.Container([
                     children=[
                         dmc.AccordionItem(
                             [dmc.AccordionControl("TEST ID", className='accordion-control-header')] +
-                            [create_panel(idx, test_id) for idx, test_id in enumerate(cordless_df['TEST_ID'].sort_values().unique())],
+
+                            [create_panel(idx, row.TEST_ID, row.TEST_DESCRIPTION) for idx, row in enumerate(
+                                cordless_df[['TEST_ID', 'TEST_DESCRIPTION']].drop_duplicates().sort_values(
+                                    by=['TEST_ID']).itertuples())],
+                            # sort_values of test_id
+
                             value='customization',
 
                         ),
@@ -802,5 +812,6 @@ def update_graph(checklist, checklist2, checklist3, multiselect, tab):
 
 #\
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    # app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
 
