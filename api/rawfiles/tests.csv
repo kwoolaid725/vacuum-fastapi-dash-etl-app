@@ -1,0 +1,8 @@
+id,description,category_id,vac_type_id,test_status,assigned1,assigned2,created_at,last_modified,due_date,completion_date,notes,owner_id
+6,Sand Redo - 1 SEC HOLD EDGES,1,1,IN-PROGRESS,1,2,2023-08-28 12:43:26.718341-05,2023-08-28 12:43:26.718341-05,,,ver_2022SEP,1
+0,Only Edges ( Before 2022SEP Change),1,1,CLOSED,1,2,2023-07-25 00:00:00-05,2023-07-25 00:00:00-05,,,ver_2022MAR,1
+2,A9K Big Debris Improved,1,1,CLOSED,1,2,2023-07-25 00:00:00-05,2023-07-25 00:00:00-05,,,ver_2022SEP,1
+3,DMS Prototypes (Changgun Lee Visit),1,1,CLOSED,1,2,2023-07-25 00:00:00-05,2023-07-25 00:00:00-05,,,ver_2022SEP,1
+4,DMS FRP Samples,1,1,CLOSED,1,2,2023-07-25 00:00:00-05,2023-07-25 00:00:00-05,,,ver_2022SEP,1
+5,Improved DMS + DMS Lite,1,1,CLOSED,1,2,2023-08-16 00:00:00-05,2023-08-16 00:00:00-05,,,ver_2022SEP,1
+1,Initial Test of New Protocol Change (2022SEP_ver.),1,1,CLOSED,1,2,2023-07-25 00:00:00-05,2023-07-25 00:00:00-05,2023-07-25 12:00:00-05,,ver_2022SEP,1

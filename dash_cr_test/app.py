@@ -106,6 +106,7 @@ def create_boxplot(df, title):
     fig = go.Figure()
 
     df_ordered = df.sort_values(by='BRAND', ascending=False, kind='mergesort')
+    df_ordered['Pickup_Mean'] = df_ordered.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['Pickup'].transform('mean')
 
     for r, c in zip(df_ordered.BRAND.unique(), px.colors.qualitative.G10):
         plot_df = df_ordered[df_ordered.BRAND == r]
@@ -117,12 +118,14 @@ def create_boxplot(df, title):
         boxpoints='all',
         jitter=0.3,
         pointpos=0,
+        boxmean=True,
         marker=dict(
 
             size=4,
 
         )
-    )
+        )
+
     fig.update_layout(
         template="plotly_white",
         # data = data,
@@ -157,6 +160,10 @@ def create_boxplot(df, title):
         }
 
     )
+    # fig.add_annotation(
+    #     x=df_ordered['Pickup'].median()
+    #
+    # )
 
 
     fig.update_xaxes(showline=True, linewidth=2, linecolor='black', ticks='inside', tickcolor='crimson', ticklen=10)

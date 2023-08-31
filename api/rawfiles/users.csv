@@ -1,0 +1,5 @@
+id,email,password,full_name,role,created_at
+1,aiden2.kim@lge.com,asdf1452,Aiden Kim,Engineer,2023-06-13 17:59:36.908429-05
+2,ashley@lge.com,asdf1452,Ashley Benson,Technician,2023-06-13 18:00:13.868666-05
+0,ex@example.com,ex,ex,ex,2023-06-14 10:57:54.196297-05
+9999,admin@admin.com,admin,admin,admin,2023-06-14 10:57:21.110231-05

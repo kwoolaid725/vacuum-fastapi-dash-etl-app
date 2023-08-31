@@ -1,0 +1,106 @@
+inv_no,vac_type_id,brand,model_name,product_stage,color,dual_nozzle,fluffy_nozzle,self_empty,self_clean,release_date,created_at,image,owner_id
+6395,2,Samsung,Jet Bot+,MP,White,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+6413,2,Samsung,Jet Bot+,MP,White,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+6487,2,iRobot,j7+,MP,Graphite,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+6592,2,Greenworks,PD31-0001,MP,White,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+7075,2,LG,R5,DV,White,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+7078,2,LG,R3,DV,White,f,f,t,f,,2023-08-17 00:00:00-05,,9999
+4811,1,Dyson,V11,MP,,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6168,1,Dyson,V15 Detect,MP,Copper,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6653,1,Samsung,Bespoke Jet VS20A95923,MP,White,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+5815,1,Tineco,Tineco Pure One S11,MP,White,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6595,1,Shark,ICZ362H Vertex Pro,MP,Blue,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6654,1,Samsung,Bespoke Jet VS20A95923,MP,Green,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6677,1,LG,A939KBGS,MP,White,t,f,t,f,,2023-08-17 00:00:00-05,,9999
+6723,1,Lupe,Pure Cordless,MP,White,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6793,1,Dyson,V12 Detect Slim,MP,Copper,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6843,1,Ryobi,PBLSV717BN One+ HP,MP,,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6844,1,Miele,Triflex HX1 SMUL0,MP,,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6878,1,Tineco,Pure One S15 Flex,MP,White,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6886,1,Shark,IZ862H Stratos,MP,Black,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6887,1,Shark,IZ662H Vertex Pro,MP,,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6888,1,Shark,IZ562H Pro,MP,,t,t,f,f,,2023-08-17 00:00:00-05,,9999
+6896,1,Dyson,V15 Detect,MP,Copper,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6942,1,LG,A939KBGS,MP,White,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+6978,1,Dyson,V15 Detect Absolute,MP,Teal,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6991,1,LG,A9S-450W,DV,White,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+7138,1,LG,A949KTMS(DMS FT),DV,Gray,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+7139,1,LG,A949KTMS(DMS FT),DV,Gray,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+7122,1,Dyson,Gen5Outsize,MP,Nicket/Blue,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6939,1,LG,A9K (Big Debris Improved),DV,Gray,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6941,1,LG,A9K (Big Debris Improved),DV,Gray,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+1,1,DUMMY,DUMMY,DM,,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6789,1,LG,A9K (AUS Nozzle),DV,,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6845,1,Tineco,PWRHERO 11,MP,White,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6661,1,Raycop,Omni Power UV+,MP,White,t,f,f,f,,2023-08-17 00:00:00-05,,9999
+5817,1,Tineco,PureOne S12 ,MP,White,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6800,1,Levoit,VortexIQ 40 Flex,MP,Black,f,f,f,f,,2023-08-17 00:00:00-05,,9999
+6828,1,Tineco,Pure One X,MP,White,f,t,f,f,,2023-08-17 00:00:00-05,,9999
+6992,1,LG,A939KBGS,MP,White,t,f,t,f,,2023-08-17 00:00:00-05,,9999
+100,1,Bissell,Air Ram 1984,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+101,1,Bissell,CleanView Pet Slim 28311,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+102,1,Bissell,CleanView Pet Slim 29037,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+103,1,Bissell,Featherweight PowerBrush 2773A,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+104,1,Bissell,IconPet Turbo 31781,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+105,1,Black+Decker,POWERSERIES Extreme BSV2020P,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+106,1,Dirt Devil,Vibe SD20020,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+107,1,Dyson,Gen5detect,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+108,1,Dyson,Gen5outsize,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+109,1,Dyson,Outsize,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+110,1,Dyson,Outsize+,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+111,1,Dyson,V11 Animal,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+112,1,Dyson,V11 Outsize,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+113,1,Dyson,V11 Torque Drive,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+114,1,Dyson,V12 Detect Slim Absolute,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+115,1,Dyson,V15 Detect,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+116,1,Dyson,V15 Detect+ Cordless,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+117,1,Dyson,V8 Absolute,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+118,1,Dyson,V8 Animal,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+119,1,Eufy,HomeVac S11 Go,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+120,1,Eufy,HomeVac S11 Infinity,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+121,1,Greenworks,24V Green 4705202,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+122,1,Hoover,Impulse BH53020,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+123,1,Hoover,ONEPWR Blade Max BH53350,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+124,1,Hoover,ONEPWR Blade+ BH53310,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+125,1,Hoover,ONEPWR Emerge BH53600V,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+126,1,Hoover,ONEPWR Evolve Pet Elite BH53801V,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+127,1,Kenmore,CSV Go 10438,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+128,1,Kenmore,DS4095,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+129,1,LG,A9 Kompressor,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+130,1,LG,CordZero All-In-One 939KBGS,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+131,1,Makita,18V LXT XLC02R1B,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+132,1,Miele,Triflex HX1 Cat & Dog SMML0,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+133,1,Miele,Triflex HX1 Pro SMML0,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+134,1,Miele,Triflex HX1 SMUL0,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+135,1,Ryobi,One+ 18V P7181K,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+136,1,Samsung,Bespoke Jet VS20A95923,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+137,1,Samsung,Jet 75 Complete,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+138,1,Samsung,Jet 90 Complete VS20R9046T3/AA,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+139,1,Samsung,Jet Light VS70 VS15T7031R4/AA,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+140,1,Shark,Cordless Pro IZ562H,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+141,1,Shark,Navigator Freestyle SV1106,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+142,1,Shark,Rocket DeluxePro HV321,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+143,1,Shark,Rocket HV300 (Walmart),MP,,,,,,,2023-08-17 00:00:00-05,,9999
+144,1,Shark,Rocket HV301,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+145,1,Shark,Rocket HV302,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+146,1,Shark,Rocket HV322,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+147,1,Shark,Rocket Pet Pro IZ162H,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+148,1,Shark,Rocket Pro IZ140,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+149,1,Shark,Rocket Zero-M Ultra-Light HV345 (Sam's Club),MP,,,,,,,2023-08-17 00:00:00-05,,9999
+150,1,Shark,Rocket Zero-M Ultra-Light ZS350 (Walmart),MP,,,,,,,2023-08-17 00:00:00-05,,9999
+151,1,Shark,Rocket Zero-M Ultra-Light ZS352,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+152,1,Shark,Rotator Freestyle SV1110 (Walmart),MP,,,,,,,2023-08-17 00:00:00-05,,9999
+153,1,Shark,Stratos IZ862H,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+154,1,Shark,Vertex Pro IZ662H,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+155,1,Shark,Vertex Ultra IZ462H,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+156,1,Shark,Vertex Ultralight HZ2002,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+157,1,Shark,Wandvac WS632,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+158,1,Tineco,A10 Dash (Walmart),MP,,,,,,,2023-08-17 00:00:00-05,,9999
+159,1,Tineco,A10 Hero,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+160,1,Tineco,A10-D Plus,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+161,1,Tineco,A11 Hero,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+162,1,Tineco,Pure One S11,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+163,1,Tineco,Pure One S11 Tango EX,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+164,1,Tineco,Pure One S12,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+165,1,Tineco,Pure One S15 Pro,MP,,,,,,,2023-08-17 00:00:00-05,,9999
+166,1,Tineco,Pure One X,MP,,,,,,,2023-08-17 00:00:00-05,,9999
