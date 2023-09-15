@@ -186,11 +186,14 @@ def create_edge_plots(df):
     # replace spaces with underscore
     df.columns = df.columns.str.replace(' ', '_')
     # append df['e_pickupL'] and df['e_pickupR'] to df['e_pickupAvg']
-    df['Average_Pickup'] = df[['Edges_Pickup_Left', 'Edges_Pickup_Right']].mean(axis=1).round(2)
+    # df['Average_Pickup'] = df[['Edges_Pickup_Left', 'Edges_Pickup_Right']].mean(axis=1).round(2)
+    df.loc[:, 'Average_Pickup'] = df[['Edges_Pickup_Left', 'Edges_Pickup_Right']].mean(axis=1).round(2)
     # max e_lavg, e_ravg, e_favg
-    df['Max_Distance'] = df[['Edges_Left_Avg.', 'Edges_Right_Avg.', 'Edges_Front_Avg.']].max(axis=1)
+    # df['Max_Distance'] = df[['Edges_Left_Avg.', 'Edges_Right_Avg.', 'Edges_Front_Avg.']].max(axis=1)
+    df.loc[:, 'Max_Distance'] = df[['Edges_Left_Avg.', 'Edges_Right_Avg.', 'Edges_Front_Avg.']].max(axis=1)
     #group by brand and model name and nozzle type and get max of e_max
-    df['Max_Distance'] = df.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['Max_Distance'].transform('max')
+    # df['Max_Distance'] = df.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['Max_Distance'].transform('max')
+    df.loc[:, 'Max_Distance'] = df.groupby(['BRAND', 'MODEL_NAME', 'BRUSH_TYPE'])['Max_Distance'].transform('max')
 
 
 
@@ -225,6 +228,7 @@ def create_edge_plots(df):
         boxpoints='all',
         jitter=0.3,
         pointpos=0,
+        boxmean=True,
         marker=dict(
 
             size=4,
@@ -304,7 +308,7 @@ def create_edge_plots(df):
 
 def create_bare_scatter(df):
 
-    df['MM'] = df['MODEL_NAME'].map(str) + " / " + df['BRUSH_TYPE'].map(str)
+    df.loc[:, 'MM'] = df['MODEL_NAME'].map(str) + " / " + df['BRUSH_TYPE'].map(str)
     fig = px.scatter(df,
                       x='Pickup',
                       y='MM', color='BRAND', hover_data=['BRAND', 'TEST_GROUP'],
@@ -819,6 +823,6 @@ def update_graph(checklist, checklist2, checklist3, multiselect, tab):
 
 #\
 if __name__ == '__main__':
-    # app.run(debug=True, host='0.0.0.0')
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
+    # app.run(debug=True)
 
